@@ -17,3 +17,13 @@ html, body {
   font-variant-numeric: tabular-nums;
   box-sizing: border-box;
 }
+
+/* Style pour le nom */
+.name-text {
+  font-family: 'Arial Black', 'Helvetica Neue', sans-serif;
+  font-weight: 900;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  font-variant: normal;
+}
