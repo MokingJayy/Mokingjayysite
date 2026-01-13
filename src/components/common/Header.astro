@@ -1,0 +1,17 @@
+---
+const { title = 'MokingJayy' } = Astro.props;
+---
+
+<header class="bg-primary text-white py-4">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <a href="/" class="text-2xl font-bold">{title}</a>
+    <nav>
+      <ul class="flex space-x-6">
+        <li><a href="/" class="hover:text-secondary transition-colors">Accueil</a></li>
+        <li><a href="/beats" class="hover:text-secondary transition-colors">Beats</a></li>
+        <li><a href="/about" class="hover:text-secondary transition-colors">À propos</a></li>
+        <li><a href="/contact" class="hover:text-secondary transition-colors">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

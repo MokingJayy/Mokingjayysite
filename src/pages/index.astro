@@ -1,16 +1,109 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/landing/Hero.astro";
-import Intro from "../components/landing/Intro.astro";
-import Projects from "../components/landing/Projects.astro";
-import Testimonials from "../components/landing/Testimonials.astro";
-import FeaturedWork from "../components/landing/FeaturedWork.astro";
+import BeatCard from "../components/beats/BeatCard.astro";
+import { beats } from "../data/beats";
 ---
 
-<BaseLayout>
-  <Hero />
-  <Intro />
-  <Projects />
-  <Testimonials />
-  <FeaturedWork />
+<BaseLayout title="Accueil | MokingJayy" showPlayer={true}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-gray-900 to-gray-800 py-20 md:py-32">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6">Découvrez des beats exclusifs</h1>
+      <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+        Des instrumentaux de qualité professionnelle pour vos projets musicaux. 
+        Écoutez, achetez et téléchargez en haute qualité.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a 
+          href="/beats" 
+          class="bg-secondary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all"
+        >
+          Voir tous les beats
+        </a>
+        <a 
+          href="#featured-beats" 
+          class="bg-white bg-opacity-10 text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-20 transition-all"
+        >
+          Découvrir
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Beats -->
+  <section id="featured-beats" class="py-16 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center">Beats Populaires</h2>
+      
+      <!-- Filtres -->
+      <div class="flex flex-wrap justify-center gap-4 mb-10">
+        <button class="px-4 py-2 bg-secondary text-white rounded-full text-sm font-medium">
+          Tous
+        </button>
+        <button class="px-4 py-2 bg-gray-800 text-white rounded-full text-sm font-medium hover:bg-gray-700">
+          Trap
+        </button>
+        <button class="px-4 py-2 bg-gray-800 text-white rounded-full text-sm font-medium hover:bg-gray-700">
+          Hip Hop
+        </button>
+        <button class="px-4 py-2 bg-gray-800 text-white rounded-full text-sm font-medium hover:bg-gray-700">
+          R&B
+        </button>
+        <button class="px-4 py-2 bg-gray-800 text-white rounded-full text-sm font-medium hover:bg-gray-700">
+          Drill
+        </button>
+      </div>
+
+      <!-- Grille de beats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {beats.map((beat) => (
+          <BeatCard beat={beat} />
+        ))}
+      </div>
+
+      <div class="text-center mt-10">
+        <a 
+          href="/beats" 
+          class="inline-block bg-secondary text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all"
+        >
+          Voir tous les beats
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- À propos -->
+  <section class="py-16 bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Qui suis-je ?</h2>
+        <p class="text-gray-300 mb-8">
+          Je suis MokingJayy, producteur de musique passionné par la création d'instrumentaux uniques. 
+          Mon objectif est de fournir aux artistes des beats de haute qualité pour concrétiser leur vision créative.
+        </p>
+        <a 
+          href="/about" 
+          class="inline-block border border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-gray-900 transition-colors"
+        >
+          En savoir plus
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-r from-secondary to-purple-600">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Prêt à donner vie à votre musique ?</h2>
+      <p class="text-xl text-white text-opacity-90 mb-8 max-w-2xl mx-auto">
+        Parcourez notre collection de beats exclusifs et trouvez le son parfait pour votre prochain projet.
+      </p>
+      <a 
+        href="/beats" 
+        class="inline-block bg-white text-gray-900 px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all"
+      >
+        Parcourir la boutique
+      </a>
+    </div>
+  </section>
 </BaseLayout>

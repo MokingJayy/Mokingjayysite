@@ -1,19 +1,44 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/common/Header.astro";
+import Footer from "../components/common/Footer.astro";
+import Player from "../components/beats/Player.astro";
+
+interface Props {
+  title?: string;
+  showPlayer?: boolean;
+}
+
+const { title = 'MokingJayy', showPlayer = false } = Astro.props;
 ---
 
-<html lang="en" class="selection:bg-secondary selection:text-secondary">
+<!DOCTYPE html>
+<html lang="fr" class="selection:bg-secondary selection:text-secondary">
   <head>
-    <BaseHead />
+    <BaseHead title={title} />
   </head>
 
-  <body class="bg-primary">
-    <slot />
-    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"
-    ></script>
+  <body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <Header title={title} />
+    
+    <main class="flex-grow">
+      <slot />
+    </main>
+    
+    <Footer />
+    
+    {showPlayer && (
+      <Player audioSrc="/audio/preview.mp3" title="Beat de démonstration" />
+    )}
+    
+    <!-- Scripts -->
+    <script type="module" src="/js/audio-player.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="text/javascript">
       AOS.init({
-        once: true, // animation will happen only once
+        once: true,
+        duration: 800,
+        easing: 'ease-in-out'
       });
     </script>
   </body>

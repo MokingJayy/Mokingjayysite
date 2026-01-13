@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BeatCard from "../../components/beats/BeatCard.astro";
+import { beats } from "../../data/beats";
+
+// Pour le moment, nous utilisons des données statiques
+// Plus tard, cela pourrait provenir d'une API ou d'une base de données
+const allBeats = beats;
+---
+
+<BaseLayout title="Tous les beats | MokingJayy" showPlayer={true}>
+  <div class="bg-gray-900 py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Tous les beats</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Parcourez notre collection complète de beats exclusifs. Filtrez par genre, BPM ou tonalité pour trouver le son parfait.
+        </p>
+      </div>
+
+      <!-- Filtres -->
+      <div class="bg-gray-800 rounded-lg p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4">Filtrer les beats</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Filtre par genre -->
+          <div>
+            <label for="genre" class="block text-sm font-medium text-gray-300 mb-2">Genre</label>
+            <select 
+              id="genre" 
+              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-secondary focus:border-transparent"
+            >
+              <option value="">Tous les genres</option>
+              <option value="trap">Trap</option>
+              <option value="hiphop">Hip Hop</option>
+              <option value="rnb">R&B</option>
+              <option value="drill">Drill</option>
+              <option value="soul">Soul</option>
+            </select>
+          </div>
+
+          <!-- Filtre par BPM -->
+          <div>
+            <label for="bpm" class="block text-sm font-medium text-gray-300 mb-2">BPM</label>
+            <select 
+              id="bpm" 
+              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-secondary focus:border-transparent"
+            >
+              <option value="">Tous les BPM</option>
+              <option value="60-80">60-80 (Trap lent)</option>
+              <option value="80-100">80-100 (Hip Hop)</option>
+              <option value="100-120">100-120 (Rap)</option>
+              <option value="120-140">120-140 (Dance/EDM)</option>
+              <option value="140+">140+ (Trap/Drill)</option>
+            </select>
+          </div>
+
+          <!-- Filtre par tonalité -->
+          <div>
+            <label for="key" class="block text-sm font-medium text-gray-300 mb-2">Tonalité</label>
+            <select 
+              id="key" 
+              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-secondary focus:border-transparent"
+            >
+              <option value="">Toutes les tonalités</option>
+              <option value="a">A Maj/Min</option>
+              <option value="a#">A# Maj/Min</option>
+              <option value="b">B Maj/Min</option>
+              <option value="c">C Maj/Min</option>
+              <option value="c#">C# Maj/Min</option>
+              <option value="d">D Maj/Min</option>
+              <option value="d#">D# Maj/Min</option>
+              <option value="e">E Maj/Min</option>
+              <option value="f">F Maj/Min</option>
+              <option value="f#">F# Maj/Min</option>
+              <option value="g">G Maj/Min</option>
+              <option value="g#">G# Maj/Min</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-6 flex justify-between items-center">
+          <div class="text-gray-400 text-sm">
+            {allBeats.length} beats trouvés
+          </div>
+          <div class="flex items-center">
+            <span class="text-gray-400 text-sm mr-2">Trier par :</span>
+            <select class="bg-gray-700 border border-gray-600 text-white text-sm rounded px-3 py-1 focus:ring-2 focus:ring-secondary focus:border-transparent">
+              <option value="newest">Plus récents</option>
+              <option value="popular">Plus populaires</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="price-desc">Prix décroissant</option>
+              <option value="bpm">BPM</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grille de beats -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {allBeats.map((beat) => (
+          <BeatCard beat={beat} />
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="px-3 py-1 rounded bg-gray-800 text-gray-400 hover:bg-gray-700 disabled:opacity-50" disabled>
+            Précédent
+          </button>
+          <button class="w-10 h-10 rounded-full bg-secondary text-white font-medium">
+            1
+          </button>
+          <button class="w-10 h-10 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700">
+            2
+          </button>
+          <button class="w-10 h-10 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700">
+            3
+          </button>
+          <span class="px-2 text-gray-400">...</span>
+          <button class="w-10 h-10 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700">
+            10
+          </button>
+          <button class="px-3 py-1 rounded bg-gray-800 text-gray-300 hover:bg-gray-700">
+            Suivant
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Styles spécifiques à la page des beats */
+  .beat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .beat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .beat-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .beat-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
