@@ -4,6 +4,16 @@
   --color-secondary: #161614;
   --color-primary: #f4f5ef;
 }
+
+/* Reset des marges par défaut */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 * {
   font-variant-numeric: tabular-nums;
+  box-sizing: border-box;
 }
